@@ -136,12 +136,14 @@ darkToggle.addEventListener("click", () => {
 
 
 
-
+// dark funksya
   window.addEventListener("DOMContentLoaded", () => {
-    const darkMode = localStorage.getItem("darkMode") === "true";
-    if(darkMode){
-      document.body.classList.add("dark")
-    }
-  } )
 
-  
+    const darkMode = localStorage.getItem("darkMode") === "true";
+    let modeIcon = document.getElementById("modeIcon")
+    if (darkMode) {
+    
+      document.body.classList.add("dark");
+    }
+      
+  });
