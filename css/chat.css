@@ -33,7 +33,38 @@
     background-color: #fff;
   }
   body.dark{
-    background-color: wheat;
+    background-color: #000000;
+  }
+  .dark header{
+    background: #323232;
+    border-bottom: 1px solid;
+    backdrop-filter: blur(54.36563491821289px)
+
+  }
+  .dark footer {
+    background-color: #323232;
+  }
+  .dark input{
+    background-color: transparent;
+    color: #fff;
+  }
+  .dark .from-contact{
+    background: #FFFFFF33;
+    color: #fff;
+
+
+  }
+  .dark .from-user{
+    background-color: #19A3FE;
+  }
+  .dark .input-box{
+    background-color: #000000;
+  }
+  .dark h1{
+    color: #cac9c9;
+  }
+  .dark i{
+    color: #0584FE;
   }
   .w-50 {
     width: 45%;
@@ -229,8 +260,7 @@ footer button{
   color: #0584FE;
   position: absolute;
   font-size: 14px;
-  left: 105px;
-
+right: 8px;
   border: none;
   border-radius: 30px;
 }
@@ -250,11 +280,14 @@ width: 110px;
 height: 30px;
 font-weight: 700;
 outline: none;
-background-color: ;
 padding-left: 10px;
   background-color: transparent;
+  outline: none;
+  border: none;
+  transition: 0.5s ease-in-out;
+  width: 82%;
+height: 40px;
 }
-
 .box i{
   font-size: 25px;
   transition: 0.5s ease-in-out;
@@ -272,7 +305,7 @@ padding-left: 10px;
 .flex-footer{
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 15px;
 }
 .input-box{
   position: relative;
@@ -283,29 +316,12 @@ padding-left: 10px;
   outline: none;
   border-radius: 30px;
   border: none;
-  width: 150px;
+  width: 100%;
 height: 40px;
-margin-top: -5px;
+margin-top: -7px;
   }
 
-
-
-
-
-
-
-
-  @media (prefers-color-scheme: dark) {
-    body {
-      background: #121212;
-      color: white;
-    }
+  #send-btn:disabled{
+    opacity: 0.4;
+cursor: not-allowed;
   }
-  
-  @media (prefers-color-scheme: light) {
-    body {
-      background: white;
-      color: black;
-    }
-  }
-  

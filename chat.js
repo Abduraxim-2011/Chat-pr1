@@ -53,26 +53,22 @@ window.addEventListener('load', function() {
 });
 
 
-
-window.addEventListener("DOMContentLoaded", () => {
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      loading.style.display = 'none';
-    }, 1000);
-  });
-  const darkMode = localStorage.getItem("dark") === "true";
-  if (darkMode) {
-
-    document.body.classList.add("dark");
-  }
-});
-
-const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-if (prefersDarkMode) {
-  document.body.classList.add('dark');
-} else {
-  document.body.classList.add('light');
-}
+  window.addEventListener("DOMContentLoaded", () => {
+    const darkMode = localStorage.getItem("darkMode") === "true";
+    if(darkMode){
+      document.body.classList.add("dark")
+    }
+  } )
 
 
+  
+    const input = document.getElementById("msgInput");
+    const sendBtn = document.getElementById("send-btn");
+
+    input.addEventListener("input", () => {
+      if (input.value.trim().length >= 1) {
+        sendBtn.disabled = false; 
+      } else {
+        sendBtn.disabled = true; 
+      }
+    });
