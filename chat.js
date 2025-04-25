@@ -12,6 +12,7 @@ function sendMessage() {
     messages.push({ text: msg, from: "user" });
     localStorage.setItem("ChatMsg", JSON.stringify(messages));
     input.value = "";
+    input.focus()
   }
 }
 
