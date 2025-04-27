@@ -125,6 +125,8 @@
     width: 100%;
     border-bottom: 1px solid #adadad  ;
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 1000;
     background-color: #FFFFFF99;
     backdrop-filter: blur(54.36563491821289px)
