@@ -1,34 +1,27 @@
-let contacts = JSON.parse(localStorage.getItem("contacts")) || [
-  { id: 1, firstName: "Ali", lastName: "Valiyev", image: "./img/fakeava.svg" },
-  { id: 2, firstName: "Vali", lastName: "Khusanov", image: "./img/fakeava.svg" },
-  { id: 3, firstName: "Halil", lastName: "Masharipov", image: "./img/fakeava.svg" },
-  { id: 4, firstName: "Jalil", lastName: "Ashurov", image: "./img/fakeava.svg" },
-  { id: 5, firstName: "Komil", lastName: "Joraboyev", image: "./img/fakeava.svg" },
-  { id: 6, firstName: "Yobir", lastName: "Alsh", image: "./img/fakeava.svg" },
-  { id: 7, firstName: "Eva", lastName: "Elfi", image: "./img/fakeava.svg" },
-  { id: 8, firstName: "Davic", lastName: "Orto", image: "./img/fakeava.svg" },
-  { id: 9, firstName: "Jova", lastName: "Orto", image: "./img/fakeava.svg" },
-  { id: 10, firstName: "Swite", lastName: "Fox", image: "./img/fakeava.svg" },
-  { id: 11, firstName: "Abu", lastName: "Jgar", image: "./img/fakeava.svg" },
-  { id: 12, firstName: "Begi", lastName: "Kot", image: "./img/fakeava.svg" },
-  { id: 13, firstName: "Nabi", lastName: "Svarshik", image: "./img/fakeava.svg" },
-  { id: 14, firstName: "Shuxrat", lastName: "Uktamv", image: "./img/fakeava.svg" },
-  { id: 15, firstName: "Aziz", lastName: "Lazizov", image: "./img/fakeava.svg" },
-  { id: 16, firstName: "Olim", lastName: "Cola", image: "./img/fakeava.svg" },
-  { id: 17, firstName: "Azamat", lastName: "Qochoqboyev", image: "./img/fakeava.svg" },
-  { id: 18, firstName: "Davic", lastName: "Blmiman", image: "./img/fakeava.svg" },
-  { id: 19, firstName: "Jova", lastName: "Pulatov", image: "./img/fakeava.svg" },
-  { id: 20, firstName: "Abu", lastName: "Mansurov", image: "./img/fakeava.svg" }
+let contacts = JSON.parse(localStorage.getItem("Contactlar")) || [
+    { id: 1, firstName: "Bektemir", lastName: "Tumani", image: "./img/  .svg" },
+    { id: 2, firstName: "Chilonzor", lastName: "Tumani", image: "./img/fakeava.svg" },
+    { id: 3, firstName: "Mirobod", lastName: "Tumani", image: "./img/fakeava.svg" },
+    { id: 4, firstName: "Mirzo Ulug‘bek", lastName: "Tumani", image: "./img/fakeava.svg" },
+    { id: 5, firstName: "Olmazor", lastName: "Tumani", image: "./img/fakeava.svg" },
+    { id: 6, firstName: "Sergeli", lastName: "Tumani", image: "./img/fakeava.svg" },
+    { id: 7, firstName: "Shayxontohur", lastName: "Tumani", image: "./img/fakeava.svg" },
+    { id: 8, firstName: "Uchtepa", lastName: "Tumani", image: "./img/fakeava.svg" },
+    { id: 9, firstName: "Yakkasaroy", lastName: "Tumani", image: "./img/fakeava.svg" },
+    { id: 10, firstName: "Yashnobod", lastName: "Tumani", image: "./img/fakeava.svg" },
+    { id: 11, firstName: "Yunusobod", lastName: "Tumani", image: "./img/fakeava.svg" },
+    { id: 12, firstName: "Yangihayot", lastName: "Tumani", image: "./img/fakeava.svg" }
 ];
+
 console.log(contacts);
 
 const container = document.querySelector(".contacts-container");
 const searchInput = document.querySelector(".input-search");
 
 function render(contactList = contacts) {
-  container.innerHTML = "";
-  contactList.forEach(e => {
-    container.innerHTML += `
+    container.innerHTML = "";
+    contactList.forEach(e => {
+        container.innerHTML += `
       <div class="swiper myContactSwiper">
         <div class="swiper-wrapper swiper-flex">
           <div class="swiper-slide call-contact">
@@ -79,68 +72,68 @@ function render(contactList = contacts) {
         </div>
       </div>
     `;
-  });
+    });
 
-  reinitAllSwipers();
+    reinitAllSwipers();
 }
 
 function OpenDialog(id) {
-  const overlay = document.getElementById(`overlay${id}`);
-  if (overlay) overlay.style.display = 'flex';
+    const overlay = document.getElementById(`overlay${id}`);
+    if (overlay) overlay.style.display = 'flex';
 }
 
 function closeDialog(id) {
-  const overlay = document.getElementById(`overlay${id}`);
-  if (overlay) overlay.style.display = 'none';
+    const overlay = document.getElementById(`overlay${id}`);
+    if (overlay) overlay.style.display = 'none';
 }
 
 function deleteContact(id) {
-  const index = contacts.findIndex(contact => contact.id == id);
-  if (index !== -1) {
-    contacts.splice(index, 1);
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-    render();
-  }
+    const index = contacts.findIndex(contact => contact.id == id);
+    if (index !== -1) {
+        contacts.splice(index, 1);
+        localStorage.setItem("contacts", JSON.stringify(contacts));
+        render();
+    }
 }
 
 function reinitAllSwipers() {
-  const swipers = document.querySelectorAll('.myContactSwiper');
+    const swipers = document.querySelectorAll('.myContactSwiper');
 
-  swipers.forEach(swiperEl => {
-    const swiper = new Swiper(swiperEl, {
-      initialSlide: 1,
-      slidesPerView: 1,
-      centeredSlides: true,
-      spaceBetween: -450,
-      threshold: 100,
+    swipers.forEach(swiperEl => {
+        const swiper = new Swiper(swiperEl, {
+            initialSlide: 1,
+            slidesPerView: 1,
+            centeredSlides: true,
+            spaceBetween: -450,
+            threshold: 100,
+        });
+
+        swiperEl.swiper = swiper;
+
+        swiperEl.addEventListener("touchend", () => {
+            clearTimeout(swiper.timer);
+            swiper.timer = setTimeout(() => {
+                swiper.slideTo(1);
+            }, 15000);
+        });
     });
-
-    swiperEl.swiper = swiper;
-
-    swiperEl.addEventListener("touchend", () => {
-      clearTimeout(swiper.timer);
-      swiper.timer = setTimeout(() => {
-        swiper.slideTo(1);
-      }, 15000);
-    });
-  });
 }
 
 function handleSearch() {
-  const value = searchInput.value.toLowerCase().trim();
-  const filteredContacts = contacts.filter(contact =>
-    contact.firstName.toLowerCase().includes(value) ||
-    contact.lastName.toLowerCase().includes(value)
-  );
-  render(filteredContacts);
+    const value = searchInput.value.toLowerCase().trim();
+    const filteredContacts = contacts.filter(contact =>
+        contact.firstName.toLowerCase().includes(value) ||
+        contact.lastName.toLowerCase().includes(value)
+    );
+    render(filteredContacts);
 }
 
 searchInput.addEventListener("input", handleSearch);
 
-searchInput.addEventListener("keydown", function (e) {
-  if (e.key === "Enter") {
-    handleSearch();
-  }
+searchInput.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        handleSearch();
+    }
 });
 
 render();
@@ -150,25 +143,25 @@ const contactNotFound = document.querySelectorAll('.contacts-container');
 const noResults = document.getElementById('not-found');
 
 searchInput.addEventListener('input', () => {
-  const searchText = searchInput.value.toLowerCase();
-  let found = false;
+    const searchText = searchInput.value.toLowerCase();
+    let found = false;
 
-  contactNotFound.forEach(contact => {
-    if (contact.textContent.toLowerCase().includes(searchText)) {
-      contact.style.display = 'list-item';
-      found = true;
-    } else {
-      contact.style.display = 'none';
-    }
-  });
+    contactNotFound.forEach(contact => {
+        if (contact.textContent.toLowerCase().includes(searchText)) {
+            contact.style.display = 'list-item';
+            found = true;
+        } else {
+            contact.style.display = 'none';
+        }
+    });
 
-  noResults.style.display = found ? 'none' : 'block';
+    noResults.style.display = found ? 'none' : 'block';
 });
 
 
 window.addEventListener("DOMContentLoaded", () => {
-  const darkMode = localStorage.getItem("darkMode") === "true";
-  if (darkMode) {
-    document.body.classList.add("dark");
-  }
+    const darkMode = localStorage.getItem("darkMode") === "true";
+    if (darkMode) {
+        document.body.classList.add("dark");
+    }
 });
